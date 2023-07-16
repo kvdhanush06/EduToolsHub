@@ -1,6 +1,9 @@
 # EduToolsHub
 Summary: A website where students can manage their homework, todo, notes, and find some good resources to learn.
 
+Demo Video: https://youtu.be/Fe0io0Mu53A
+Website: https://edutoolshub--venkata-dhanush.repl.co/
+
 ### Program Info
 **Python version**: *3.11.4*,  **Packages used**: *django, django-crispy-forms, youtube-search-python, requests, wikipedia*<br /><br />
 In EduToolsHub, you can register if you are a new user, and then you get access to create, view, and delete your todo, notes, <br />
