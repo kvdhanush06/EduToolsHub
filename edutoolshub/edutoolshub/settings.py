@@ -127,9 +127,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [BASE_DIR/'static']
+STATICFILES_DIRS = [BASE_DIR/'static', "/var/www/static/"]
+STATIC_ROOT = "/var/www/static/"
 
 LOGIN_REDIRECT_URL = 'home'
 LOGIN_URL = 'login'
