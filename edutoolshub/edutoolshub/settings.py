@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-^j*u32#1m^$+9zp%$*p7covxmgb3xgg%qo#9m_1zek4^^)yc$b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["edutoolshub.onrender.com"]
+ALLOWED_HOSTS = ["edutoolshub.onrender.com", "127.0.0.1"]
 
 
 # Application definition
@@ -39,7 +39,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dashboard',
     'crispy_forms',
+    'crispy_bootstrap5',
 ]
+
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
