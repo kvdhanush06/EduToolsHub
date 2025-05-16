@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-^j*u32#1m^$+9zp%$*p7covxmgb3xgg%qo#9m_1zek4^^)yc$b
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["edutoolshub.onrender.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["edutoolshub.onrender.com", "127.0.0.1", "allkvd.me", "edutoolshub.allkvd.me"]
 
 
 # Application definition
