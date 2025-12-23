@@ -1,4 +1,53 @@
 # EduToolsHub
+
+EduToolsHub is a lightweight Django-based toolkit aimed at students and learners. It provides utilities and simple productivity features such as notes, homework/todo management, converters, dictionary and quick content lookups (wiki, YouTube, books). This repository is intended for local development and small deployments.
+
+Quick links
+- Setup instructions: `SETUP.md`
+- Full user-facing feature list: `FEATURES.md`
+
+Getting started (development)
+1. Create and activate a Python virtual environment
+
+	Windows (PowerShell):
+	```powershell
+	python -m venv venv
+	.\\venv\\Scripts\\Activate.ps1
+	```
+
+	Windows (CMD):
+	```cmd
+	python -m venv venv
+	venv\\Scripts\\activate.bat
+	```
+
+2. Install dependencies
+
+	```powershell
+	pip install -r requirements.txt
+	```
+
+3. Apply database migrations and create a superuser (optional)
+
+	```powershell
+	python manage.py migrate
+	python manage.py createsuperuser
+	```
+
+4. Run the development server
+
+	```powershell
+	python manage.py runserver
+	```
+
+Visit http://127.0.0.1:8000 in your browser.
+
+Notes
+- The project uses a local SQLite database for development (`db.sqlite3`).
+- For production, move secrets (SECRET_KEY, DEBUG, DB settings) to environment variables and configure a proper production-grade DB and static file hosting. See `SETUP.md` for additional guidance.
+
+Contributing
+- If you'd like me to add a CONTRIBUTING guide, issue/PR templates, or a LICENSE file, tell me and I will add them.
 Summary: A website where students can manage their homework, todo, notes, and find some good resources to learn.
 
 Demo Video: https://youtu.be/Fe0io0Mu53A <br />
