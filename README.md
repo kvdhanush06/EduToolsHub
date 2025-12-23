@@ -46,13 +46,11 @@ Notes
 - The project uses a local SQLite database for development (`db.sqlite3`).
 - For production, move secrets (SECRET_KEY, DEBUG, DB settings) to environment variables and configure a proper production-grade DB and static file hosting. See `SETUP.md` for additional guidance.
 
-Contributing
-- If you'd like me to add a CONTRIBUTING guide, issue/PR templates, or a LICENSE file, tell me and I will add them.
 Summary: A website where students can manage their homework, todo, notes, and find some good resources to learn.
 
 Demo Video: https://youtu.be/Fe0io0Mu53A <br />
 
-### Program Info
+### Project Info
 **Python version**: *3.11.4*,  **Packages used**: *django, django-crispy-forms, youtube-search-python, requests, wikipedia*<br /><br />
 In EduToolsHub, you can register if you are a new user, and then you get access to create, view, and delete your todo, notes, <br />
 homework. You can search for information in the wikipedia section, you can find meanings of the words you don't know in the <br />
