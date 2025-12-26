@@ -5,27 +5,25 @@
 Conversion - EduToolsHub
 {% endblock title %}
 {% block content %}
-<div class="container text-center">
+<div class="container">
     <form method="POST">
         {% csrf_token %}
         <div class="form-group">
             <legend class="border-bottom mb-4"></legend>
             {{ form|crispy }}
-            <button href="" class="btn btn-outline-info" type="submit">
-                Select
-            </button>
+            <button href="" class="btn btn-primary mt-2" type="submit">Select</button>
         </div>
         {% if input %}
         <fieldset class="form-group">
             <legend class="border-bottom mb-4"></legend>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-12 col-md-4">
                     {{ m_form.input|as_crispy_field }}
                 </div>
-                <div class="col-md-4">
+                <div class="col-12 col-md-4">
                     {{ m_form.measure1|as_crispy_field }}
                 </div>
-                <div class="col-md-4">
+                <div class="col-12 col-md-4">
                     {{ m_form.measure2|as_crispy_field }}
                 </div>
             </div>
@@ -34,9 +32,7 @@ Conversion - EduToolsHub
             {{ answer }}
         </fieldset>
         <div class="form-group">
-            <button href="" class="btn btn-outline-info" type="submit">
-                Convert
-            </button>
+            <button href="" class="btn btn-primary" type="submit">Convert</button>
         </div>
         {% endif %}
     </form>

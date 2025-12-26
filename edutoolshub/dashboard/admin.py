@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import Notes, HomeWork, Todo
+
+from .models import HomeWork, Notes, Todo
 
 admin.site.register(Notes)
 admin.site.register(HomeWork)

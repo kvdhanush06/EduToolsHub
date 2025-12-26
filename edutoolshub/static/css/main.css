@@ -1,193 +1,92 @@
-@import url("https://fonts.googleapis.com/css?family=Acme|Lobster|Patua+One|Rubik|Sniglet|Quicksand|Barlow");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Rubik:wght@300;400;500;700&display=swap");
 
-html {
-  scroll-behavior: smooth;
-  height: 100%;
-  width: 100%;
+:root{
+  --bg: #0f1724; /* deep navy */
+  --card: #ffffff;
+  --muted: #6b7280;
+  --accent: #0ea5a7; /* teal */
+  --glass: rgba(255,255,255,0.06);
+  --radius: 12px;
 }
 
-main {
-  font-family: Barlow, Quicksand, Rubik, sans-serif, serif, 'Times New Roman', Times, serif !important;
-}
+*{box-sizing:border-box}
+html{height:100%;scroll-behavior:smooth}
+body{min-height:100%;font-family:Inter, Rubik, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background: #eef2ff; color:#0f1724; margin:0}
 
-footer {
-  font-family: Rubik, sans-serif, serif, 'Times New Roman', Times, serif;
-}
+main{padding:2.5rem}
 
-.example::-webkit-scrollbar {
-  display: none;
-}
+/* Make layout use full viewport and keep footer at bottom when content is short */
+html, body {height:100%;}
+body{display:flex;flex-direction:column;min-height:100vh}
+main{flex:1}
 
-.navbar {
-  background-color: rgb(0, 0, 0) !important;
-}
+.navbar{background:rgba(255,255,255,0.95);box-shadow:0 6px 18px rgba(15,23,36,0.06);backdrop-filter: blur(4px);position:relative;z-index:1050}
+.navbar .nav-link{color:var(--muted);padding:.5rem .75rem}
+.navbar .nav-link.active{color:var(--accent);font-weight:600}
+.navbar .navbar-brand{color:var(--accent)}
 
-.card {
-  box-shadow: 15px 15px 10px rgb(78, 77, 77);
-}
+/* Remove underlines globally */
+a, a:link, a:visited, a:hover, a:active {text-decoration: none !important}
 
-.card-header:hover {
-  background: rgb(11, 22, 83) !important;
-  color: whitesmoke !important;
-  transition: 0.1s ease-in;
-}
+/* Remove focus outline/box shadows globally (visual only) */
+a:focus, a:active, button:focus, button:active, input:focus, textarea:focus, select:focus {outline: none !important; box-shadow: none !important}
+/* For accessibility later, consider using :focus-visible to show a subtle indicator instead of removing outlines */
 
-a {
-  text-decoration: none !important;
-  color: black;
-}
+/* Ensure dropdown menus sit above cards */
+.dropdown-menu{z-index:2000}
 
-a:hover {
-  text-decoration: none;
-  color: black;
-}
+/* Make cards stretch to equal heights in grid */
+.card{border:none;background:var(--card);border-radius:var(--radius);box-shadow:0 10px 30px rgba(2,6,23,0.08);overflow:hidden;display:flex;flex-direction:column}
+.card.h-100{height:100%}
+.card .card-body{flex:1 1 auto}
+.card .card-footer{margin-top:auto}
 
-.custom-header:hover {
-  background: rgb(143, 189, 186) !important;
-}
+/* Lower card stacking so dropdown appears above */
+.card{z-index:0}
+.navbar-brand{font-weight:700;letter-spacing:0.2px}
 
-.card-header {
-  color: black !important;
-  background: rgb(152, 214, 230) !important;
-  transition: 0.3s ease-in;
-}
+/* Cards */
+.card{border:none;background:var(--card);border-radius:var(--radius);box-shadow:0 10px 30px rgba(2,6,23,0.08);overflow:hidden}
+.card-header{background:linear-gradient(90deg,var(--accent),#38bdf8);color:white;border-bottom:none}
+.card-img-top{object-fit:cover;width:100%;height:200px}
 
-.nav-link:hover {
-  background: black !important;
-  color: white !important;
-  transition: 0.7s ease;
-}
+/* Utilities */
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
 
-.icon-bar {
-  color: black;
-}
+.btn-primary{background:var(--accent);border:none}
+.btn-primary:hover{filter:brightness(.95)}
 
-.card h4 {
-  margin: 40px 40px 0 40px;
-  text-align: left;
-}
+/* Outline primary variant matching site accent */
+.btn-outline-primary{color:var(--accent);border-color:rgba(14,165,167,0.25)}
+.btn-outline-primary:hover{background:var(--accent);color:#fff;border-color:var(--accent)}
 
-.card h6 {
-  margin: 25px 40px 0 40px;
-  text-align: left;
-}
+.content-section{padding:1.25rem;border-radius:10px;background:linear-gradient(180deg, #fff, #fbfdff)}
 
-.card p {
-  text-align: right;
-  margin-right: 50px;
-  line-height: 10px;
-}
+.account-img{width:120px;height:120px;border-radius:999px;object-fit:cover}
+.account-heading{font-size:1.8rem;font-weight:600}
 
-.button {
-  display: inline-block;
-  font-family: "Montserrat", "Trebuchet MS", Helvetica, sans-serif;
-  padding: .8em 1.4em;
-  padding-right: 4.7em;
-  background: #009ED8;
-  border: none;
-  color: white;
-}
+/* Responsive tweaks */
+@media (max-width:768px){main{padding:1rem}.card-img-top{height:160px}}
 
-.card img {
-  height: 210px;
-}
+/* Subtle hover */
+.card:hover{transform:translateY(-6px);transition:transform .18s ease}
 
-html, body {
-  max-width: 100%;
-  min-width: 390px;
-  overflow-x: hidden;
-  height: 100%;
-  width: 100%;
-}
+/* Alerts */
+.alert{border-radius:10px}
 
-body {
-  background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(255, 255, 255, 0.5));
-  overflow-x: hidden;
-  background-repeat: no-repeat;
-}
+/* Simple dark footer */
+footer{background:#0b1220;color:#d1d5db;padding:0.75rem 1rem}
+footer .container{max-width:1140px}
+footer p{margin:0}
 
-.card-header {
-  background-color: rgb(133, 204, 231);
-}
+/* Footer brand */
+.footer-brand{font-weight:700;color:#ffffff;letter-spacing:0.4px;text-transform:none}
 
-.myimage {
-  opacity: 1;
-  display: block;
-  transition: .5s ease;
-  backface-visibility: hidden;
-}
+/* Footer link colors */
+footer a{color:rgba(255,255,255,0.75)}
+footer a:hover{color:rgba(255,255,255,0.95)}
 
-.card-img-top:hover {
-  opacity: 0.9;
-  transform: scale(1.02);
-  transition: 0.2s ease;
-}
+/* Accessibility: focus states */
+a:focus,.btn:focus{outline:3px solid rgba(14,165,167,.15);outline-offset:3px}
 
-.col-md-3 {
-  padding-bottom: 50px;
-}
-
-.col-md-3 .card {
-  width: 100%;
-  height: 100%;
-}
-
-.btn:hover {
-  background: black;
-  color: white;
-  border: 0.5px solid white;
-}
-
-.fa:hover {
-  color: red;
-}
-
-.fa {
-  color: black;
-}
-
-.profa {
-  color: black;
-}
-
-footer .container-fluid {
-  padding: 10vmin 10vmin;
-}
-
-footer .column a+a {
-  padding: 0 0.7em;
-}
-
-.content-section {
-  background: #ffffff;
-  padding: 10px 20px;
-  border: 1px solid #dddddd;
-  border-radius: 3px;
-  margin-bottom: 20px;
-}
-
-.account-img {
-  height: 125px !important;
-  width: 125px !important;
-  margin-right: 20px;
-  margin-bottom: 16px;
-}
-
-.account-heading {
-  font-size: 2.5rem;
-}
-
-/* Custom Scrollbar Styles */
-::-webkit-scrollbar {
-  width: 10px;
-  background-color: #f1f1f1;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: #888;
-  border-radius: 5px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: #555;
-}

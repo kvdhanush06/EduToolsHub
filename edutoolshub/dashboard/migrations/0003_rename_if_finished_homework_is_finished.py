@@ -4,15 +4,14 @@ from django.db import migrations
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('dashboard', '0002_alter_notes_options_homework'),
+        ("dashboard", "0002_alter_notes_options_homework"),
     ]
 
     operations = [
         migrations.RenameField(
-            model_name='homework',
-            old_name='if_finished',
-            new_name='is_finished',
+            model_name="homework",
+            old_name="if_finished",
+            new_name="is_finished",
         ),
     ]

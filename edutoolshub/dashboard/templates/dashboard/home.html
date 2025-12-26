@@ -2,102 +2,98 @@
 {% load static %} 
 {% block content %}
 <section class="container text-center">
-  <h3>Welcome {{ username }}</h3>
-  <hr> <br>
-  <div class="row">
-    <div class="col-md-3">
-      <a href="{% url 'todo' %}">
-        <div class="card">
+  <h3 class="mb-2">Welcome {{ username }}</h3>
+  <hr class="mb-4" />
+  <div class="row g-4">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+      <a href="{% url 'todo' %}" class="w-100 text-decoration-none">
+        <div class="card h-100">
           <img class="card-img-top" src="{% static 'images/todo.jpg' %}" alt="Notes image">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h5 class="card-title">To Do</h5>
-            Add your to-do lists for your day and remove them as you finish.
+            <p class="mb-0 mt-auto">Add your to-do lists for your day and remove them as you finish.</p>
           </div>
         </div>
       </a>
     </div>
-    <div class="col-md-3">
-      <a href="{% url 'notes' %}">
-        <div class="card">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+      <a href="{% url 'notes' %}" class="w-100 text-decoration-none">
+        <div class="card h-100">
           <img class="card-img-top" src="{% static 'images/notes.jpg' %}" alt="Notes image">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h5 class="card-title">Notes</h5>
-            Create Notes to refer them later.
+            <p class="mb-0 mt-auto">Create Notes to refer them later.</p>
           </div>
         </div>
       </a>
     </div>
-    <div class="col-md-3">
-      <a href="{% url 'homework' %}">
-        <div class="card">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+      <a href="{% url 'homework' %}" class="w-100 text-decoration-none">
+        <div class="card h-100">
           <img class="card-img-top" src="{% static 'images/homework.jpg' %}" alt="Notes image">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h5 class="card-title">Homework</h5>
-            Add homeworks and assign them deadlines. They will be displayed prioritized by deadlines.
+            <p class="mb-0 mt-auto">Add homeworks and assign them deadlines. They will be displayed prioritized by deadlines.</p>
           </div>
         </div>
       </a>
     </div>
-    <div class="col-md-3">
-      <a href="{% url 'wiki' %}">
-        <div class="card">
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+      <a href="{% url 'wiki' %}" class="w-100 text-decoration-none">
+        <div class="card h-100">
           <img class="card-img-top" src="{% static 'images/wiki.jpg' %}" alt="Notes image">
-          <div class="card-body">
+          <div class="card-body d-flex flex-column">
             <h5 class="card-title">Wikipedia</h5>
-            Search the topics you want in Wikipedia.
+            <p class="mb-0 mt-auto">Search the topics you want in Wikipedia.</p>
           </div>
         </div>
       </a>
     </div>
   </div>
-  <br><br><br>
-  <div class="row">
-    <div class="col-md-3 ">
-      <a href="{% url 'dictionary' %}">
-        <div class="card">
-          <img class="card-img-top" src="{% static 'images/dictionary.jpg' %}" alt="Notes image">
-          <div class="card-body">
-            <h5 class="card-title">Dictionary</h5>
-            Search for meanings, synonyms, phonetics.
+  <div class="row g-4 mt-2">
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+        <a href="{% url 'dictionary' %}" class="w-100 text-decoration-none">
+          <div class="card h-100">
+            <img class="card-img-top" src="{% static 'images/dictionary.jpg' %}" alt="Notes image">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Dictionary</h5>
+              <p class="mb-0 mt-auto">Search for meanings, synonyms, phonetics.</p>
+            </div>
           </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-md-3">
-      <a href="{% url 'youtube' %}">
-        <div class="card">
-          <img class="card-img-top" src="{% static 'images/youtube.jpg' %}" alt="Notes image">
-          <div class="card-body">
-            <h5 class="card-title">Youtube</h5>
-            Search Youtube and select your desired video to play it on youtube.
+        </a>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+        <a href="{% url 'youtube' %}" class="w-100 text-decoration-none">
+          <div class="card h-100">
+            <img class="card-img-top" src="{% static 'images/youtube.jpg' %}" alt="Notes image">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Youtube</h5>
+              <p class="mb-0 mt-auto">Search Youtube and select your desired video to play it on youtube.</p>
+            </div>
           </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-md-3">
-      <a href="{% url 'books' %}">
-        <div class="card mt-20">
-          <img class="card-img-top" src="{% static 'images/books.jpg' %}" alt="Notes image">
-          <div class="card-body">
-            <h5 class="card-title">Books</h5>
-            Browse books from a list of neatly organized book menu.
+        </a>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+        <a href="{% url 'books' %}" class="w-100 text-decoration-none">
+          <div class="card h-100">
+            <img class="card-img-top" src="{% static 'images/books.jpg' %}" alt="Notes image">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Books</h5>
+              <p class="mb-0 mt-auto">Browse books from a list of neatly organized book menu.</p>
+            </div>
           </div>
-        </div>
-      </a>
-    </div>
-    <div class="col-md-3">
-      <a href="{% url 'conversion' %}">
-        <div class="card">
-          <img class="card-img-top" src="{% static 'images/conversion.jpg' %}" alt="Notes image">
-          <div class="card-body">
-            <h5 class="card-title">Conversion</h5>
-            Check out the conversion table that helps you to convert measurements to more familiar ones of your choice.
+        </a>
+      </div>
+      <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+        <a href="{% url 'conversion' %}" class="w-100 text-decoration-none">
+          <div class="card h-100">
+            <img class="card-img-top" src="{% static 'images/conversion.jpg' %}" alt="Notes image">
+            <div class="card-body d-flex flex-column">
+              <h5 class="card-title">Conversion</h5>
+              <p class="mb-0 mt-auto">Check out the conversion table that helps you to convert measurements to more familiar ones of your choice.</p>
+            </div>
           </div>
-        </div>
-      </a>
-    </div>
+        </a>
+      </div>
   </div>
-  <br>
-  <br>
-</section>
 {% endblock content %}

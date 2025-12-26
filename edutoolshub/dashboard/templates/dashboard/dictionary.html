@@ -11,34 +11,41 @@ Dictionary - EduToolsHub
     <form action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <input class="btn btn-danger" type="submit" value="Submit">
+        <button class="btn btn-primary" type="submit">Search</button>
     </form>
-    <br>
-    <div class="content-section p-0 mt-5">
+    <div class="content-section p-3 mt-4">
         {% if input %}
-        <div class="custom-header">
-            <h2>{{ input }}</h2>
-            <h6>{{ phonetics }}</h6>
+        <div class="mb-3">
+            <h2 class="mb-1">{{ input }}</h2>
+            <div class="text-muted small">{{ phonetics }}</div>
             <audio id="player" src="{{ audio }}"></audio>
-            <div>
-                <a onclick="document.getElementById('player').play()">
-                    <i class='fa fa-volume-up fa-2x'></i>
-                </a>
-            </div>
+          <div class="mt-2">
+            <button class="btn btn-sm btn-outline-primary" onclick="document.getElementById('player').play()" type="button">
+              <i class='fa fa-volume-up'></i> Play
+            </button>
+          </div>
         </div>
-        
-        <hr class="p-0 m-0">
-        
-        <p class="float-left">
-            <h4>Definition: {{ definition }}</h4>
-            <h4>Example: {{ example }}</h4>
-        </p>
-        Synonyms:
-        {% for synonym in synonyms %}
-        {{ synonym }}
-        {% endfor %}
+
         <hr>
-        
+
+        <div class="row">
+          <div class="col-12 col-md-8">
+            <h5>Definition</h5>
+            <p>{{ definition }}</p>
+            <h5>Example</h5>
+            <p>{{ example }}</p>
+          </div>
+          <div class="col-12 col-md-4">
+            <h6>Synonyms</h6>
+            <ul>
+              {% for synonym in synonyms %}
+              <li>{{ synonym }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <hr>
+
     </div>
     {% else %}
     <h2>Enter the word</h2>

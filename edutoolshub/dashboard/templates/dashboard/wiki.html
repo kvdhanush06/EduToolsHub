@@ -12,24 +12,19 @@ Wikipidia - EduToolsHub
     <form action="" method="post">
         {% csrf_token %}
         {{ form|crispy }}
-        <input class="btn btn-danger" type="submit" value="Submit">
+        <button class="btn btn-primary" type="submit">Search</button>
     </form>
-    <br>
-
-    <div class="container">
-        <div class="content-section p-0 mt-5">
-            <a href="{{ link }}" class="p-0 m-0" target="_blank">
-                <div class="custom-header">
-                    <h2>{{ title }}</h2>
-                    <h6>{{ link }}</h6>
-                </div>
-            </a>
-            <hr class="p-0 m-0">
-            <p class="description m-5 p-5">
-                {{ details }}
-            </p>
-            <hr>
+        <div class="container mt-4">
+            <div class="content-section p-3">
+                <a href="{{ link }}" target="_blank" class="text-decoration-none">
+                    <div class="custom-header mb-2">
+                        <h2 class="mb-0">{{ title }}</h2>
+                        <small class="text-muted">{{ link }}</small>
+                    </div>
+                </a>
+                <hr>
+                <div class="description mt-3">{{ details }}</div>
+            </div>
         </div>
-    </div>
 </section>
 {% endblock content %}

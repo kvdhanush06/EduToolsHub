@@ -1,5 +1,6 @@
-from django.db import models
 from django.contrib.auth.models import User
+from django.db import models
+
 
 class Notes(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -9,10 +10,10 @@ class Notes(models.Model):
     class Meta:
         verbose_name = "Note"
         verbose_name_plural = "Notes"
-    
+
     def __str__(self):
         return self.title
-    
+
 
 class HomeWork(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -24,6 +25,7 @@ class HomeWork(models.Model):
 
     def __str__(self):
         return self.title
+
 
 class Todo(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

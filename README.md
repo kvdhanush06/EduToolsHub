@@ -1,89 +1,47 @@
 # EduToolsHub
 
-EduToolsHub is a lightweight Django-based toolkit aimed at students and learners. It provides utilities and simple productivity features such as notes, homework/todo management, converters, dictionary and quick content lookups (wiki, YouTube, books). This repository is intended for local development and small deployments.
+EduToolsHub is a polished, student-focused web toolkit built with Django that brings essential study utilities into one lightweight application. Designed for learners who want to stay organized and discover resources quickly, EduToolsHub combines simple productivity tools (notes, todo, homework) with curated content lookup features (Wikipedia, dictionary, YouTube, books, converters) to support everyday study workflows.
 
-Quick links
-- Setup instructions: `SETUP.md`
-- Full user-facing feature list: `FEATURES.md`
+## Why EduToolsHub?
 
-Getting started (development)
-1. Create and activate a Python virtual environment
+- Centralize learning: keep homework, todos, and notes in one personal space.
+- Discover resources: quickly search for articles, videos, dictionary definitions, and books related to your studies.
+- Lightweight & local-first: built for easy local development and small deployments, ideal for students and hobby projects.
 
-	Windows (PowerShell):
-	```powershell
-	python -m venv venv
-	.\\venv\\Scripts\\Activate.ps1
-	```
+## Key Features
 
-	Windows (CMD):
-	```cmd
-	python -m venv venv
-	venv\\Scripts\\activate.bat
-	```
+- Notes — create, view, and manage personal study notes. Notes consist of a title and a rich description; each note belongs to a user and can be opened in a detail view or deleted from the list.
 
-2. Install dependencies
+- Homework — add homework items with subject, title, description and a due date/time. Homeworks include an "is_finished" flag you can toggle from the list or the profile; the UI displays the due date so you can keep track of deadlines.
 
-	```powershell
-	pip install -r requirements.txt
-	```
+- Todo — quick task entries with a title and a completion flag. Todos are user-scoped and can be marked complete or deleted from the UI.
 
-3. Apply database migrations and create a superuser (optional)
+- Wikipedia search — search for an article and open the matching page; results include the article title, a direct link to Wikipedia, and a short summary.
 
-	```powershell
-	python manage.py migrate
-	python manage.py createsuperuser
-	```
+- Dictionary — lookup powered by a public dictionary API. For a queried word the app shows phonetics, an audio pronunciation (playable in-browser), a primary definition, an example usage and a list of synonyms (when available).
 
-4. Run the development server
+- YouTube search — client-side search backed by the youtube-search-python package. Results include title, channel, thumbnail, duration, views and a link to open the video on YouTube.
 
-	```powershell
-	python manage.py runserver
-	```
+- Books lookup — searches Google Books (via the public API) and returns title, subtitle, description, page count, categories, rating, thumbnail and a preview link so you can preview or purchase the book.
 
-Visit http://127.0.0.1:8000 in your browser.
+- Unit conversion — small conversion utility supporting length (yard ↔ foot) and mass (pound ↔ kilogram). Inputs are validated as integers; the conversion returns a human-readable string.
 
-Notes
-- The project uses a local SQLite database for development (`db.sqlite3`).
-- For production, move secrets (SECRET_KEY, DEBUG, DB settings) to environment variables and configure a proper production-grade DB and static file hosting. See `SETUP.md` for additional guidance.
+- Profile dashboard — a focused view showing only your pending (not finished) todos and homeworks so you can quickly see what’s due.
 
-Summary: A website where students can manage their homework, todo, notes, and find some good resources to learn.
+Extra notes about UX and behavior
+- Authentication: users register with a standard username/password (Django's User model). Registered users can access the dashboard features; unauthenticated visitors are prompted to register or login.
+- Forms & UI: the app uses Django forms with Bootstrap 5 and django-crispy-forms for consistent, responsive layouts and a clean, mobile-friendly interface.
+- Data model: the main user-scoped models are `Notes(title, description)`, `HomeWork(subject, title, description, due, is_finished)` and `Todo(title, is_finished)`.
+- External APIs & resiliency: external queries (YouTube, Google Books, dictionary API, Wikipedia) are performed from a dedicated services module. The code uses request retries and local caching (lru_cache) for common lookups to improve reliability and reduce redundant network calls.
+- Limitations & privacy: the site makes outbound requests to third-party APIs (Google Books, dictionaryapi.dev, Wikipedia, YouTube search client). No usage tracking is performed by the app itself, but external services may log requests. The demo includes an audio player for dictionary pronunciations.
 
-Demo Video: https://youtu.be/Fe0io0Mu53A <br />
+## Demo & Live Access
 
-### Project Info
-**Python version**: *3.11.4*,  **Packages used**: *django, django-crispy-forms, youtube-search-python, requests, wikipedia*<br /><br />
-In EduToolsHub, you can register if you are a new user, and then you get access to create, view, and delete your todo, notes, <br />
-homework. You can search for information in the wikipedia section, you can find meanings of the words you don't know in the <br />
-dictionary section, you can search for specific subject topics in youtube section and you can watch those videos, you can <br />
-find for books you want to read or buy, you can convert your measurements from one unit to other in the conversion section. <br />
+- Demo video: https://youtu.be/Fe0io0Mu53A
+- Live site: https://edutoolshub.allkvd.me
 
-### Registration
-You have to sign up and create a new account in the website for the first time and then login anywhere, anytime and can access <br />
-your tools. <br />
+---
 
-### ToDo Section
-You can add tasks you want to do and complete them accordingly. <br />
+Thank you for checking out EduToolsHub — a small but thoughtful suite of tools for learners. The UI is intentionally simple so students can focus on studying: create notes, add tasks and homework, search for learning resources, or perform quick conversions without leaving one small web app.
 
-### Notes Section
-You can add notes you want to refer later and save them. <br />
-
-### Homework Section
-You can add your homeworks you want to do and add description of the work and then complete it accordingly. <br />
-
-### Wikipedia Section
-You can search for information you want for knowledge or to do your homework. <br />
-
-### Dictionary Section
-You can find the meanings, synonyms, phonetics of the words you don't know. <br />
-
-### Youtube Section
-You can find the youtube videos for the topics you want to learn in a video format. <br />
-
-### Books Section
-You can find the books you want to read and then can read it online or buy it. <br />
-
-### Conversions Section
-You can convert your measurements from one unit to other units. <br />
-
-### Profiles Section
-You can see all your ToDo and Homework at one place. <br />
+If you'd like the live site URL updated in this README, or want short screenshots / badges added (license, Python/Django versions, or CI status), tell me what you'd like and I will update the file.

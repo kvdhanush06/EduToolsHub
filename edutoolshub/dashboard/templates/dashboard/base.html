@@ -12,11 +12,9 @@
     EduToolsHub
     {% endblock title %}
   </title>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
-    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous" />
+  <!-- Use Bootstrap 5 (no jQuery required) and latest Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{% static 'css/main.css' %}" />
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-4606228195187021"
      crossorigin="anonymous"></script>
@@ -24,10 +22,10 @@
 
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-      <div class="container-fluid">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+      <div class="container">
         <a class="navbar-brand" href="{% url 'home' %}">EduToolsHub</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
@@ -40,8 +38,8 @@
               <a class="nav-link" href="{% url 'profile' %}">Profile</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                aria-expanded="false">
                 Options
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -74,8 +72,8 @@
       </div>
     </nav>
   </header>
-  <br /><br />
-  <main>
+
+  <main class="mt-4">
     {% if messages %}
     {% for msg in messages %}
       <div class="alert alert-{{msg.tags}}">{{msg}}</div>
@@ -86,12 +84,26 @@
     {% endblock content %}
 
   </main>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
-  </script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  <!-- Footer -->
+  <footer class="mt-5">
+    <div class="container text-center py-2">
+      <p class="mb-0 small text-white">&copy; {% now "Y" %} <span class="footer-brand">EduToolsHub</span></p>
+      <div class="mt-1">
+        <a class="me-3 small text-white-50" href="/">Home</a>
+        <a class="me-3 small text-white-50" href="https://github.com/kvdhanush06/EduToolsHub" target="_blank" rel="noopener">GitHub</a>
+        <a class="small text-white-50" href="https://youtu.be/Fe0io0Mu53A" target="_blank" rel="noopener">Demo</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Bootstrap 5 bundle (includes Popper) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Small enhancement: dismiss alert messages after 4s
+    document.addEventListener('DOMContentLoaded', function () {
+      const alerts = document.querySelectorAll('.alert');
+      alerts.forEach(a => setTimeout(() => { try { a.remove(); } catch(e){} }, 4000));
+    });
   </script>
 </body>
 

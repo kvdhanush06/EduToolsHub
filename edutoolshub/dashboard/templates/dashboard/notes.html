@@ -6,13 +6,13 @@ Notes - EduToolsHub
 {% endblock title %}
 {% block content %}
 <div class="container">
-    <div class="row">
+    <div class="row g-4">
         {% for note in notes %}
-        <div class="col-md-3">
-            <a href="{% url 'notes-detail' note.id %}">
-                <div class="card">
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 d-flex">
+            <a href="{% url 'notes-detail' note.id %}" class="w-100 text-decoration-none">
+                <div class="card h-100 d-flex flex-column">
                     <div class="card-header">{{ note.title }}</div>
-                    <div class="card-body">{{ note.description|slice:"0:100" }}</div>
+                    <div class="card-body flex-grow-1">{{ note.description|slice:"0:100" }}</div>
                     <div class="card-footer mt-auto">
                         <a href="{% url 'delete-note' note.id %}">
                             <i class="fa fa-trash fa-2x"></i>
@@ -22,11 +22,10 @@ Notes - EduToolsHub
             </a>
         </div>
         {% endfor %}
-        <br><br>
     </div>
 </div>
-<br><br>
-<div class="container">
+
+<div class="container mt-4">
     <form method="POST">
         {% csrf_token %}
         <fieldset class="form-group">
@@ -34,7 +33,7 @@ Notes - EduToolsHub
         </fieldset>
         {{ form|crispy }}
         <div class="form-group">
-            <button href="" class="btn btn-outline-info" type="submit">
+            <button href="" class="btn btn-primary" type="submit">
                 Create
             </button>
         </div>

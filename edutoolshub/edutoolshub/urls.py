@@ -14,18 +14,27 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path, include
+
 from dashboard import views as dash_views
-from django.contrib.auth import views as auth_views
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
+from django.urls import include, path
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('dashboard.urls')),
-    path('register/', dash_views.register, name='register'),
-    path('profile/', dash_views.profile, name='profile'),
-    path('login/', auth_views.LoginView.as_view(template_name="dashboard/login.html"), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(template_name="dashboard/logout.html"), name='logout'),
+    path("admin/", admin.site.urls),
+    path("", include("dashboard.urls")),
+    path("register/", dash_views.register, name="register"),
+    path("profile/", dash_views.profile, name="profile"),
+    path(
+        "login/",
+        auth_views.LoginView.as_view(template_name="dashboard/login.html"),
+        name="login",
+    ),
+    path(
+        "logout/",
+        auth_views.LogoutView.as_view(template_name="dashboard/logout.html"),
+        name="logout",
+    ),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
