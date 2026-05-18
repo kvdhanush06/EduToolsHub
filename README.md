@@ -38,7 +38,7 @@ Extra notes about UX and behavior
 ## Demo & Live Access
 
 - Demo video: https://youtu.be/Fe0io0Mu53A
-- Live site: https://edutoolshub.allkvd.me
+- Live site: https://edutoolshub.onrender.com/
 
 ---
 
