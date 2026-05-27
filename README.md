@@ -43,5 +43,3 @@ Extra notes about UX and behavior
 ---
 
 Thank you for checking out EduToolsHub — a small but thoughtful suite of tools for learners. The UI is intentionally simple so students can focus on studying: create notes, add tasks and homework, search for learning resources, or perform quick conversions without leaving one small web app.
-
-If you'd like the live site URL updated in this README, or want short screenshots / badges added (license, Python/Django versions, or CI status), tell me what you'd like and I will update the file.
