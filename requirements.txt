@@ -15,7 +15,7 @@ crispy-bootstrap5==2025.6
 cryptography==46.0.3
 cyclonedx-python-lib==11.6.0
 defusedxml==0.7.1
-Django==6.0
+Django==5.2.7
 django-crispy-forms==2.5
 dparse==0.6.4
 filelock==3.20.1
