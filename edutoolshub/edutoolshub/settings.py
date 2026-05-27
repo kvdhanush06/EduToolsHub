@@ -28,31 +28,37 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 # Read SECRET_KEY from environment for production.
 # Falls back to an unsafe default for local development only.
-SECRET_KEY = os.environ.get("SECRET_KEY", "unsafe-local-secret")
+SECRET_KEY = os.environ.get("SECRET_KEY")
+DEBUG = os.environ.get("DEBUG", "False") == "True"
+
+ALLOWED_HOSTS = [host.strip() for host in os.environ.get(
+    "ALLOWED_HOSTS",
+    "127.0.0.1,localhost,edutoolshub.onrender.com,edutoolshub.allkvd.dev"
+).split(",") if host.strip()]
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get("DEBUG", "False").lower() in ("1", "true", "yes")
+# DEBUG = os.environ.get("DEBUG", "False").lower() in ("1", "true", "yes")
 
 # Configure hosts from environment (comma separated) or sensible defaults for local dev
 # --- FIXED ALLOWED_HOSTS LOGIC ---
 # Read ALLOWED_HOSTS from the environment. Default to localhost for development only.
-allowed_hosts_env = os.environ.get(
-    "ALLOWED_HOSTS",
-    ",".join(
-        [
-            "127.0.0.1",
-            "localhost",
-            "edutoolshub.onrender.com",
-            "allkvd.dev",
-            "edutoolshub.allkvd.dev",
-        ]
-    ),
-)
-_allowed_hosts = allowed_hosts_env.split(",")
+# allowed_hosts_env = os.environ.get(
+#     "ALLOWED_HOSTS",
+#     ",".join(
+#         [
+#             "127.0.0.1",
+#             "localhost",
+#             "edutoolshub.onrender.com",
+#             "allkvd.dev",
+#             "edutoolshub.allkvd.dev",
+#         ]
+#     ),
+# )
+# _allowed_hosts = allowed_hosts_env.split(",")
 
 # --- ADDED CSRF_TRUSTED_ORIGINS (Required for HTTPS deployments) ---
 # Automatically trust https://<host> for any host that looks like a domain (contains a dot).
-ALLOWED_HOSTS = [h.strip() for h in _allowed_hosts if h.strip()]
+# ALLOWED_HOSTS = [h.strip() for h in _allowed_hosts if h.strip()]
 
 CSRF_TRUSTED_ORIGINS = []
 for host in ALLOWED_HOSTS:
@@ -156,15 +162,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 STATICFILES_DIRS = [BASE_DIR / "static"]
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
