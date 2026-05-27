@@ -42,9 +42,9 @@ allowed_hosts_env = os.environ.get(
         [
             "127.0.0.1",
             "localhost",
-            "edutoolshub.allkvd.me",
-            "allkvd.me",
             "edutoolshub.onrender.com",
+            "allkvd.dev",
+            "edutoolshub.allkvd.dev",
         ]
     ),
 )
@@ -177,6 +177,7 @@ LOGIN_URL = "login"
 
 # Production security settings: enabled when DEBUG is False
 if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
     # Redirect all non-HTTPS requests to HTTPS
     SECURE_SSL_REDIRECT = True
     # Use secure cookies
