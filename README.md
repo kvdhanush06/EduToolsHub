@@ -1,45 +1,195 @@
 # EduToolsHub
 
-EduToolsHub is a polished, student-focused web toolkit built with Django that brings essential study utilities into one lightweight application. Designed for learners who want to stay organized and discover resources quickly, EduToolsHub combines simple productivity tools (notes, todo, homework) with curated content lookup features (Wikipedia, dictionary, YouTube, books, converters) to support everyday study workflows.
+Educational productivity platform that combines study management tools, resource discovery, and workflow automation into a single web application.
 
-## Why EduToolsHub?
+**Live:** https://edutoolshub.onrender.com/
 
-- Centralize learning: keep homework, todos, and notes in one personal space.
-- Discover resources: quickly search for articles, videos, dictionary definitions, and books related to your studies.
-- Lightweight & local-first: built for easy local development and small deployments, ideal for students and hobby projects.
+**Demo:** https://youtu.be/Fe0io0Mu53A
 
-## Key Features
+## Problem
 
-- Notes — create, view, and manage personal study notes. Notes consist of a title and a rich description; each note belongs to a user and can be opened in a detail view or deleted from the list.
+Students often rely on multiple websites and applications to manage notes, track homework, organize tasks, search for learning resources, and perform simple academic workflows.
 
-- Homework — add homework items with subject, title, description and a due date/time. Homeworks include an "is_finished" flag you can toggle from the list or the profile; the UI displays the due date so you can keep track of deadlines.
+EduToolsHub brings these commonly used tools into a unified platform designed to simplify day-to-day learning activities.
 
-- Todo — quick task entries with a title and a completion flag. Todos are user-scoped and can be marked complete or deleted from the UI.
+## Features
 
-- Wikipedia search — search for an article and open the matching page; results include the article title, a direct link to Wikipedia, and a short summary.
+### Study Management
 
-- Dictionary — lookup powered by a public dictionary API. For a queried word the app shows phonetics, an audio pronunciation (playable in-browser), a primary definition, an example usage and a list of synonyms (when available).
+#### Notes
 
-- YouTube search — client-side search backed by the youtube-search-python package. Results include title, channel, thumbnail, duration, views and a link to open the video on YouTube.
+* Create and organize study notes
+* View detailed note content
+* Delete and manage notes
+* User-specific note storage
 
-- Books lookup — searches Google Books (via the public API) and returns title, subtitle, description, page count, categories, rating, thumbnail and a preview link so you can preview or purchase the book.
+#### Homework Tracking
 
-- Unit conversion — small conversion utility supporting length (yard ↔ foot) and mass (pound ↔ kilogram). Inputs are validated as integers; the conversion returns a human-readable string.
+* Track assignments and deadlines
+* Subject-based organization
+* Completion status management
+* Due date monitoring
 
-- Profile dashboard — a focused view showing only your pending (not finished) todos and homeworks so you can quickly see what’s due.
+#### Todo Management
 
-Extra notes about UX and behavior
-- Authentication: users register with a standard username/password (Django's User model). Registered users can access the dashboard features; unauthenticated visitors are prompted to register or login.
-- Forms & UI: the app uses Django forms with Bootstrap 5 and django-crispy-forms for consistent, responsive layouts and a clean, mobile-friendly interface.
-- Data model: the main user-scoped models are `Notes(title, description)`, `HomeWork(subject, title, description, due, is_finished)` and `Todo(title, is_finished)`.
-- External APIs & resiliency: external queries (YouTube, Google Books, dictionary API, Wikipedia) are performed from a dedicated services module. The code uses request retries and local caching (lru_cache) for common lookups to improve reliability and reduce redundant network calls.
-- Limitations & privacy: the site makes outbound requests to third-party APIs (Google Books, dictionaryapi.dev, Wikipedia, YouTube search client). No usage tracking is performed by the app itself, but external services may log requests. The demo includes an audio player for dictionary pronunciations.
-
-## Demo & Live Access
-
-- Demo video: https://youtu.be/Fe0io0Mu53A
-- Live site: https://edutoolshub.onrender.com/
+* Personal task tracking
+* Completion workflows
+* Quick task creation
+* User-specific organization
 
 ---
 
-Thank you for checking out EduToolsHub — a small but thoughtful suite of tools for learners. The UI is intentionally simple so students can focus on studying: create notes, add tasks and homework, search for learning resources, or perform quick conversions without leaving one small web app.
+### Learning Resource Discovery
+
+#### Wikipedia Search
+
+* Article discovery
+* Summary generation
+* Direct resource access
+
+#### Dictionary Lookup
+
+* Definitions
+* Pronunciations
+* Example usage
+* Synonym discovery
+* Audio playback support
+
+#### YouTube Search
+
+* Educational video discovery
+* Channel information
+* View statistics
+* Direct video access
+
+#### Book Search
+
+* Google Books integration
+* Book descriptions
+* Ratings and categories
+* Preview links
+
+---
+
+### Utility Tools
+
+#### Unit Converter
+
+Supports common academic conversions:
+
+* Yard ↔ Foot
+* Pound ↔ Kilogram
+
+#### Personal Dashboard
+
+Provides a consolidated view of:
+
+* Pending homework
+* Outstanding tasks
+* Upcoming work
+
+## Architecture
+
+EduToolsHub follows a server-side rendered architecture using Django.
+
+### Core Components
+
+* Authentication System
+* Notes Management
+* Homework Management
+* Todo Management
+* Resource Discovery Services
+* Utility Tools
+* User Dashboard
+
+### External Integrations
+
+* Wikipedia
+* Dictionary API
+* Google Books API
+* YouTube Search
+
+### Reliability Features
+
+* Request timeout handling
+* Retry mechanisms
+* Response caching
+* Input validation
+* Graceful fallback handling
+
+## Tech Stack
+
+### Backend
+
+* Python
+* Django
+
+### Frontend
+
+* HTML
+* CSS
+* Bootstrap 5
+* Django Templates
+
+### Forms & Validation
+
+* Django Forms
+* django-crispy-forms
+
+### External Services
+
+* Wikipedia
+* Google Books API
+* Dictionary API
+* YouTube Search
+
+## Data Model
+
+### Notes
+
+```text
+title
+description
+user
+```
+
+### Homework
+
+```text
+subject
+title
+description
+due
+is_finished
+user
+```
+
+### Todo
+
+```text
+title
+is_finished
+user
+```
+
+## Key Engineering Highlights
+
+* Integrated 4 external service APIs into a unified platform.
+* Implemented timeout boundaries and fallback handling for unreliable external services.
+* Built layered input validation across forms, services, and data models.
+* Added caching and retry strategies to improve API reliability.
+* Developed a user-scoped dashboard experience for personalized workflows.
+
+## Local Development
+
+```bash
+git clone https://github.com/kvdhanush06/EduToolsHub.git
+
+cd EduToolsHub
+
+pip install -r requirements.txt
+
+python manage.py migrate
+
+python manage.py runserver
+```
