@@ -193,3 +193,9 @@ python manage.py migrate
 
 python manage.py runserver
 ```
+
+---
+
+## Built by
+
+**Venkata Dhanush Kakarlamudi** — [Portfolio](https://portfolio.allkvd.dev/)
