@@ -1,6 +1,8 @@
 from unittest.mock import Mock, patch
 
-from django.test import TestCase
+from django.contrib.auth import get_user_model
+from django.test import Client, TestCase
+from django.urls import reverse
 
 from . import services
 
@@ -84,3 +86,61 @@ class ServicesTests(TestCase):
 
         results = services.search_youtube("q", limit=1)
         self.assertEqual(len(results), 1)
+
+
+class LogoutViewTests(TestCase):
+    """Regression tests for the broken navbar logout.
+
+    Django >= 5.0 only allows POST on LogoutView; a plain <a> link (GET)
+    returns 405 and does not log the user out. The navbar must submit a
+    CSRF-protected POST form instead.
+    """
+
+    def setUp(self):
+        self.password = "secret-pass-123"
+        self.user = get_user_model().objects.create_user(
+            username="tester", password=self.password
+        )
+
+    def test_logout_via_get_is_rejected(self):
+        self.client.login(username="tester", password=self.password)
+        response = self.client.get(reverse("logout"))
+        self.assertEqual(response.status_code, 405)
+
+    def test_logout_via_post_logs_user_out(self):
+        self.client.login(username="tester", password=self.password)
+        response = self.client.post(reverse("logout"))
+        # No next_page is configured, so LogoutView renders the template.
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, "dashboard/logout.html")
+
+        # Session must no longer hold the authenticated user id.
+        self.assertNotIn("_auth_user_id", self.client.session)
+
+        # A protected page must now redirect to login.
+        protected = self.client.get(reverse("notes"))
+        self.assertEqual(protected.status_code, 302)
+        self.assertIn(reverse("login"), protected.url)
+
+    def test_logout_post_requires_csrf_token(self):
+        csrf_client = Client(enforce_csrf_checks=True)
+        csrf_client.login(username="tester", password=self.password)
+        # POST without a CSRF token must be rejected.
+        response = csrf_client.post(reverse("logout"))
+        self.assertEqual(response.status_code, 403)
+        # And the user is still logged in.
+        self.assertIn("_auth_user_id", csrf_client.session)
+
+    def test_navbar_renders_post_form_not_get_link(self):
+        self.client.login(username="tester", password=self.password)
+        response = self.client.get(reverse("home"))
+        self.assertEqual(response.status_code, 200)
+
+        content = response.content.decode()
+        # The logout control must be a POST form pointing at the logout URL.
+        self.assertIn(f'action="{reverse("logout")}"', content)
+        self.assertIn('method="post"', content)
+        # It must carry a CSRF token.
+        self.assertIn('name="csrfmiddlewaretoken"', content)
+        # And there must be no plain GET link to /logout/ anymore.
+        self.assertNotIn(f'href="{reverse("logout")}"', content)

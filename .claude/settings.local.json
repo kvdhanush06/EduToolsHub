@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(venv/Scripts/python -c \"import django; print\\('Django', django.get_version\\(\\)\\)\")",
+      "Bash(python -c \"import django; print\\('Django', django.get_version\\(\\)\\)\")",
+      "Bash(venv/Scripts/python *)",
+      "Bash(mkdir -p /tmp/django527)",
+      "Read(//tmp/**)",
+      "Bash(pip download *)",
+      "Bash(python -c \"import zipfile; zipfile.ZipFile\\('django-5.2.7-py3-none-any.whl'\\).extractall\\('unpacked'\\)\")"
+    ]
+  }
+}

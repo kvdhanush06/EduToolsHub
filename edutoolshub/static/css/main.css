@@ -23,6 +23,11 @@ main{flex:1}
 .navbar{background:rgba(255,255,255,0.95);box-shadow:0 6px 18px rgba(15,23,36,0.06);backdrop-filter: blur(4px);position:relative;z-index:1050}
 .navbar .nav-link{color:var(--muted);padding:.5rem .75rem}
 .navbar .nav-link.active{color:var(--accent);font-weight:600}
+
+/* Logout is a POST form (Django >= 5.0 rejects GET logout);
+   style the submit button so it matches the surrounding nav links. */
+.navbar .logout-form{margin:0}
+.navbar .logout-form button{cursor:pointer;margin:0}
 .navbar .navbar-brand{color:var(--accent)}
 
 /* Remove underlines globally */
