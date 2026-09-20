@@ -66,7 +66,7 @@ EduToolsHub follows a server-side rendered architecture using Django.
 
 - Python
 - Django
-- PostgreSQL
+- SQLite
 - HTML/CSS
 - Bootstrap 5
 - Django Templates
