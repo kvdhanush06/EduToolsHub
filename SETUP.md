@@ -9,7 +9,8 @@ This document describes how to set up, run, test and contribute to EduToolsHub. 
 - Database & migrations
 - Run (development)
 - Tests
-# Dependencies & pinning
+- Dependencies & pinning
+
 ## Prerequisites
 
 - Supported OS: Windows 10/11, macOS, Linux
@@ -17,7 +18,6 @@ This document describes how to set up, run, test and contribute to EduToolsHub. 
 - Git installed and configured
 
 Recommended developer tools (optional): pip-tools, pytest.
-
 
 ## Quick start
 
@@ -35,7 +35,6 @@ pip install -r requirements.txt
 
 If you prefer separating runtime and development packages, create `requirements.in` and use `pip-compile` (see Dependencies section).
 
-
 ## Configuration (env)
 
 Create a `.env` at the repository root to store local settings. Do not commit this file.
@@ -46,15 +45,13 @@ Example `.env`:
 DEBUG=True
 SECRET_KEY=replace-with-a-secure-key
 ALLOWED_HOSTS=localhost,127.0.0.1
-# DATABASE_URL=sqlite:///db.sqlite3
 ```
 
 Add `.env` to `.gitignore` if it is not already ignored.
 
-
 ## Database & migrations
 
-This project uses SQLite by default. To apply migrations:
+This project uses SQLite. To apply migrations:
 
 ```powershell
 python manage.py migrate
@@ -66,7 +63,6 @@ Create a superuser for local administration:
 python manage.py createsuperuser
 ```
 
-
 ## Run (development)
 
 Start the development server:
@@ -76,7 +72,6 @@ python manage.py runserver
 ```
 
 Visit http://127.0.0.1:8000 and `/admin/` to log in with the superuser account.
-
 
 ## Tests
 
@@ -93,7 +88,6 @@ pytest -q
 ```
 
 If tests fail after pulling changes, run `migrate` and re-run tests. Ensure any required environment variables or fixtures are present.
-
 
 ## Dependencies & pinning
 
@@ -118,10 +112,9 @@ pip install pip-audit
 pip-audit
 ```
 
-
 ## Production notes
 
-- Use PostgreSQL (or another production RDBMS) instead of SQLite.
+- The current application uses SQLite. Keep the database and media storage persistent in the deployment environment.
 - Set `DEBUG=False`, provide a secure `SECRET_KEY`, and set `ALLOWED_HOSTS`.
 - Collect static files and serve them via a web server or CDN:
 
@@ -130,7 +123,6 @@ python manage.py collectstatic
 ```
 
 - Use Gunicorn/Uvicorn behind a reverse proxy on Linux hosts for production deployments.
-
 
 ## Contributing guidelines
 
@@ -162,7 +154,6 @@ PR checklist (suggested):
 - [ ] Migrations included if applicable
 
 Address review feedback, rebase or merge the latest `main` as requested, and keep the PR focused.
-
 
 ## Troubleshooting
 
